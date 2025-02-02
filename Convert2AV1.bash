@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Loop through all .mkv files
+#Global Variables 
 skip_grain=false
 log=true
 job_count=0

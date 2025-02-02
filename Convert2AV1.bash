@@ -64,7 +64,7 @@ transcodeJob(){
 	
 	# Transcode each mkv to av1 using hardware accel
 	echo "Transcoding of $F started from $FTYPE to av1"
-	ffmpeg -hide_banner -loglevel error -stats -y -hwaccel vaapi -hwaccel_output_format vaapi -i "$F" -vf 'hwmap=derive_device=qsv,format=qsv' -c:v av1_qsv -global_quality 20 -preset veryslow "$TEMPF";
+	ffmpeg -nostdin -hide_banner -loglevel error -stats -y -hwaccel vaapi -hwaccel_output_format vaapi -i "$F" -vf 'hwmap=derive_device=qsv,format=qsv' -c:v av1_qsv -global_quality 20 -preset veryslow "$TEMPF";
 	
 	if [ "$skip_grain" = false ]; then
 			# Pass file and temp file names into script
@@ -88,8 +88,9 @@ transcodeJob(){
 
 
 # Find all files recursively, the IFS bit handles spaces in the name
-find . -type f -name "*.mkv" | while IFS= read -r file;
+find . -type f -name "*.mkv" -print0 | while IFS= read -r -d '' file;
 do
+    echo "Processing File $file"
     if (( job_count >= max_jobs )); then
         wait -n  # Wait for any job to finish
         ((job_count--))

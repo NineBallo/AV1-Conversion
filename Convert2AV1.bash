@@ -56,7 +56,7 @@ transcodeJob(){
 	local TEMPF=${F%.*}.av1.mkv
 	
 	# Get the codec type, will skip if av1... no point reencoding av1->av1
-	local FTYPE=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 $file)
+	local FTYPE=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 $F)
 	
 	
 	# Skip already generated AV1 files

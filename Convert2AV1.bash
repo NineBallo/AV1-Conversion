@@ -60,7 +60,7 @@ transcodeJob(){
 	
 	
 	# Skip already generated AV1 files
-	[[ $FTYPE == "av1" ]] && continue
+	[[ $FTYPE == "av1" ]] && return
 	
 	# Transcode each mkv to av1 using hardware accel
 	echo "Transcoding of $F started from $FTYPE to av1"

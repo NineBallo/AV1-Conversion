@@ -88,7 +88,7 @@ transcodeJob(){
 
 
 # Find all files recursively, the IFS bit handles spaces in the name
-find . -type f -name "*.mkv" -print0 | while IFS= read -r -d '' file;
+find . -type f \( -name "*.mkv" -o -name "*.mp4" \) -print0 | while IFS= read -r -d '' file;
 do
     echo "Processing File $file"
     if (( job_count >= max_jobs )); then

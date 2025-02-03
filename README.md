@@ -1,5 +1,5 @@
 # AV1 Conversion Script
-Just a little script I made to recursivly reencode all non AV1 mkv files to AV1 ones using my intel arc A380
+Just a little script I made to recursivly reencode all non AV1 mkv/mp4 files to AV1 mkv ones using my intel arc A380
 
 Currently only supports QSV, I use vaapi to deencode and QSV to encode due to a bug on my system, it works for me but if you want to use a different codec just change that one line. 
 

@@ -19,9 +19,11 @@ generateGrain(){
         # Compute Grain Diff
         grav1synth diff "$F" "$TEMPF" -o "$GRAINF";
         # Apply Grain Diff
-        grav1synth apply "$TEMPF" -o "$TEMPF" -g "$GRAINF";
+        grav1synth apply "$TEMPF" -o "av1_$TEMPF" -g "$GRAINF";
 
-        # Clean up grain file
+        # Overwrite the original with the AV1 version
+	mv "av1_$TEMPF" "$TEMPF"
+ 	# Clean up grain file
         rm "$GRAINF";
 }
 

@@ -6,6 +6,9 @@ log=true
 job_count=0
 max_jobs=3
 
+# Kill all background jobs if script is interrupted
+trap 'echo "Script canceled, killing subjobs..."; kill 0' SIGINT SIGTERM
+
 # Generate film grain
 generateGrain(){
         local F=$1
